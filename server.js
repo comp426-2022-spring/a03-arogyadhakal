@@ -96,7 +96,7 @@ app.get('/app/flip/call/tails', (req, res) => {
     res.status(200).json({ 'call' : flip.call, 'flip': flip.flip, 'result': flip.result});
 });
 
-const server = app.listen(port, () => {
+app.listen(port, () => {
     console.log('App listening on port %PORT%'.replace('%PORT%',port))
 });
 
