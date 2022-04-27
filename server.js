@@ -1,6 +1,6 @@
 const http = require('http')
 
-const args = require(minimist)(process.argv.slice(2))
+const args = require('minimist')(process.argv.slice(2))
 
 const express = require('express');
 
