@@ -10,9 +10,15 @@ args['port'];
 
 const port = args.port || process.env.PORT || 3000
 
-const server = app.listen(port, () => {
-    console.log('App listening on port %PORT%'.replace('%PORT%',port))
-});
+
+app.get('/app/', (req, res) => {
+    // Respond with status 200
+        res.statusCode = 200;
+    // Respond with status message "OK"
+        res.statusMessage = 'OK';
+        res.writeHead( res.statusCode, { 'Content-Type' : 'text/plain' });
+        res.end(res.statusCode+ ' ' +res.statusMessage)
+    })
 
 function coinFlip() {
     let number = Math.random();
@@ -68,20 +74,6 @@ function flipACoin(call) {
 }
 
 
-
-app.use(function(req, res){
-    res.status(404).send('404 NOT FOUND')
-});
-
-app.get('/app/', (req, res) => {
-    // Respond with status 200
-        res.statusCode = 200;
-    // Respond with status message "OK"
-        res.statusMessage = 'OK';
-        res.writeHead( res.statusCode, { 'Content-Type' : 'text/plain' });
-        res.end(res.statusCode+ ' ' +res.statusMessage)
-    })
-
 app.get('/app/flip/', (req, res) => {
     res.status(200).json({'flip': coinFlip()})
 });
@@ -99,4 +91,12 @@ app.get('/app/flips/heads', (req, res) => {
 app.get('/app/flips/tails', (req, res) => {
 	const flip = flipACoin('tails')
     res.status(200).json({'call': flip.call, 'flip': flip.flip, 'result': flip.result})
+});
+
+const server = app.listen(port, () => {
+    console.log('App listening on port %PORT%'.replace('%PORT%',port))
+});
+
+app.use(function(req, res){
+    res.status(404).send('404 NOT FOUND')
 });
