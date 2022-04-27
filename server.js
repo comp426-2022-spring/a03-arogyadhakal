@@ -86,13 +86,14 @@ app.get('/app/flips/:number', (req, res) => {
 });
 
 app.get('/app/flip/call/heads', (req, res) => {
-	const flip = flipACoin('heads')
-    res.status(200).json({'call': flip.call, 'flip': flip.flip, 'result': flip.result})
+	const flip = flipACoin('heads');
+    res.status(200).json({ 'call' : flip.call, 'flip': flip.flip, 'result': flip.result});
 });
 
+// Define tails endpoint
 app.get('/app/flip/call/tails', (req, res) => {
-	const flip = flipACoin('tails')
-    res.status(200).json({'call': flip.call, 'flip': flip.flip, 'result': flip.result})
+	const flip = flipACoin('tails');
+    res.status(200).json({ 'call' : flip.call, 'flip': flip.flip, 'result': flip.result});
 });
 
 const server = app.listen(port, () => {
