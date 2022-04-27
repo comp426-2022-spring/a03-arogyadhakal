@@ -2,6 +2,8 @@ const express = require('express');
 const minimist = require('minimist');
 const app = express()
 
+const http = require('http')
+
 const args = require(minimist)(process.argv.slice(2))
 
 args['port'];
@@ -79,3 +81,22 @@ app.get('/app/', (req, res) => {
         res.writeHead( res.statusCode, { 'Content-Type' : 'text/plain' });
         res.end(res.statusCode+ ' ' +res.statusMessage)
     })
+
+app.get('/app/flip/', (req, res) => {
+    res.status(200).json({'flip': coinFlip()})
+});
+
+app.get('/app/flips/:number', (req, res) => {
+	const flips = manyflips(req.params.number)
+    res.status(200).json({'raw': flips, 'summary': countFlips(flips)})
+});
+
+app.get('/app/flips/heads', (req, res) => {
+	const flip = flipACoin('heads')
+    res.status(200).json({'call': flip.call, 'flip': flip.flip, 'result': flip.result})
+});
+
+app.get('/app/flips/tails', (req, res) => {
+	const flip = flipACoin('tails')
+    res.status(200).json({'call': flip.call, 'flip': flip.flip, 'result': flip.result})
+});
