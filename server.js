@@ -1,5 +1,8 @@
-const express = require('express')
+const express = require('express');
+const minimist = require('minimist');
 const app = express()
+
+const args = require(minimist)(process.argv.slice(2))
 
 args['port'];
 
