@@ -63,7 +63,7 @@ function flipACoin(call) {
     result: ""
   }
   this.flip == this.call ? this.result = "win" : this.result = "lose"
-
+  return result
 }
 
 app.get('/app/', (req, res) => {
