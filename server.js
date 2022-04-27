@@ -56,14 +56,13 @@ function countFlips(array) {
 }
 
 function flipACoin(call) {
-  let flip = coinFlip()
+  let flip = coinFlip();
   let result = {
     call: call,
     flip: flip,
-    result: ""
-  }
-  this.flip == this.call ? this.result = "win" : this.result = "lose"
-  return result
+    result: (flip == call) ? "win" : "lose"
+  };
+  return result;
 }
 
 app.get('/app/', (req, res) => {
