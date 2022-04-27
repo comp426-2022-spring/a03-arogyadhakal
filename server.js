@@ -1,24 +1,17 @@
-const express = require('express');
-const minimist = require('minimist');
-const app = express()
-
 const http = require('http')
 
 const args = require(minimist)(process.argv.slice(2))
+
+const express = require('express');
+
+const app = express()
+
 
 args['port'];
 
 const port = args.port || process.env.PORT || 3000
 
 
-app.get('/app/', (req, res) => {
-    // Respond with status 200
-        res.statusCode = 200;
-    // Respond with status message "OK"
-        res.statusMessage = 'OK';
-        res.writeHead( res.statusCode, { 'Content-Type' : 'text/plain' });
-        res.end(res.statusCode+ ' ' +res.statusMessage)
-    })
 
 function coinFlip() {
     let number = Math.random();
@@ -72,6 +65,15 @@ function flipACoin(call) {
   this.flip == this.call ? this.result = "win" : this.result = "lose"
 
 }
+
+app.get('/app/', (req, res) => {
+    // Respond with status 200
+        res.statusCode = 200;
+    // Respond with status message "OK"
+        res.statusMessage = 'OK';
+        res.writeHead( res.statusCode, { 'Content-Type' : 'text/plain' });
+        res.end(res.statusCode+ ' ' +res.statusMessage)
+    })
 
 
 app.get('/app/flip/', (req, res) => {
